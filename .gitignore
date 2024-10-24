@@ -1,0 +1,46 @@
+# 📦 Builds / outputs.
+dist/
+build/
+
+# 🚀 Astro generated types.
+.astro/
+
+# 📦 Dependencies.
+node_modules/
+pnpm-lock.yaml
+
+# 🕹️ IDE.
+.vscode/*
+.idea
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# 📄 Logs.
+*.tsbuildinfo
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
+
+/cypress/videos/
+/cypress/screenshots/
+
+# 🎭 Enviroment vars.
+.env
+.env.production
