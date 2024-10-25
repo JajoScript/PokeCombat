@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useTeamStore } from '@/stores/team'
-import { generatePokeTeams } from '@/utils'
+import { adminTeams, getPokeTeams } from '@/utils'
 import { TeamContainer } from '@/components/Teams/'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import type { Pokemon } from '@/types/'
@@ -18,12 +18,14 @@ onMounted(async () => {
 })
 
 // -- * 3. Metodos.
-async function onGenerateTeams() {
-  const pokemons: Pokemon[] = await generatePokeTeams()
-
+async function onGenerateTeams(action: string = '') {
   const store = useTeamStore()
-  store.setTeam1(pokemons.slice(0, 3))
-  store.setTeam2(pokemons.slice(3, 6))
+
+  const newTeamIDs: number[] = adminTeams(action)
+  const newPokeTeams: Pokemon[] = await getPokeTeams(newTeamIDs)
+
+  store.setTeam1(newPokeTeams.slice(0, 3))
+  store.setTeam2(newPokeTeams.slice(3, 6))
 }
 </script>
 
@@ -50,8 +52,8 @@ async function onGenerateTeams() {
       <div class="inline-flex">
         <button
           type="button"
-          className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
-          @click="onGenerateTeams"
+          class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
+          @click="() => onGenerateTeams()"
         >
           🎲 Cambiar equipos
         </button>

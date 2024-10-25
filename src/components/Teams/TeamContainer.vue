@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import type { Pokemon } from '@/types'
+import { adminTeams, getPokeTeams } from '@/utils'
+import { useTeamStore } from '@/stores/team'
 import MemberInfo from './MemberInfo.vue'
+import type { Pokemon } from '@/types'
 
-defineProps({
+// -- * 1. Estado del componente.
+const store = useTeamStore()
+const props = defineProps({
   teamNum: {
     type: String,
     required: true,
@@ -16,9 +20,15 @@ defineProps({
   },
 })
 
-// -- * 1. Estado del componente.
 // -- * 2. Ciclo de vida.
 // -- * 3. Metodos.
+async function onRandomize() {
+  const newTeamIDs: number[] = adminTeams(`GEN_TEAM_${props.teamNum}`)
+  const newPokeTeams: Pokemon[] = await getPokeTeams(newTeamIDs)
+
+  store.setTeam1(newPokeTeams.slice(0, 3))
+  store.setTeam2(newPokeTeams.slice(3, 6))
+}
 </script>
 
 <template>
@@ -36,6 +46,14 @@ defineProps({
         </div>
       </div>
     </div>
+
+    <button
+      type="button"
+      class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
+      @click="() => onRandomize()"
+    >
+      🎲 Cambiar equipos
+    </button>
   </div>
 </template>
 
