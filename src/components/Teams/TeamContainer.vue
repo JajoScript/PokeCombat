@@ -41,7 +41,7 @@ defineProps({
 
 <style scoped>
 .team_container {
-  @apply min-w-[700px] p-4;
+  @apply min-w-[700px] min-h-[200px] p-4;
   @apply flex flex-row gap-x-2 items-center justify-center;
   @apply rounded-l-full rounded-md;
   @apply mb-4;
