@@ -23,7 +23,7 @@ const team = ref<Pokemon[]>(props.teamNum === '1' ? store.team_1 : store.team_2)
   <div :class="`container_arena arena_${teamNum}`">
     <div class="flex flex-row items-center justify-center h-full gap-x-4">
       <div v-for="(pokemon, index) in team" :key="index">
-        <PokemonCard :pokemon="pokemon" :teamNum="teamNum" />
+        <PokemonCard :pokemon="pokemon" :teamNum="teamNum" :index="index" />
       </div>
     </div>
   </div>

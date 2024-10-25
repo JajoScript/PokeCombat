@@ -5,6 +5,7 @@ import type { Pokemon } from '@/types'
 defineProps<{
   teamNum: string
   pokemon: Pokemon
+  index: number
 }>()
 </script>
 
@@ -13,13 +14,18 @@ defineProps<{
   <div v-if="teamNum === '1'">
     <div v-if="pokemon.sprites.other.showdown.front_default !== null">
       <img
+        :class="`pokemonCard_${index}`"
         :src="pokemon.sprites.other.showdown.front_default"
         :alt="pokemon.name"
       />
     </div>
 
     <div v-else>
-      <img :src="pokemon.sprites.front_default" :alt="pokemon.name" />
+      <img
+        :class="`pokemonCard_${index}`"
+        :src="pokemon.sprites.front_default"
+        :alt="pokemon.name"
+      />
     </div>
   </div>
 
@@ -27,6 +33,7 @@ defineProps<{
   <div v-else>
     <div v-if="pokemon.sprites.other.showdown.back_default !== null">
       <img
+        :class="`pokemonCard_${index}`"
         :src="pokemon.sprites.other.showdown.back_default"
         :alt="pokemon.name"
       />
@@ -34,12 +41,34 @@ defineProps<{
 
     <div v-else>
       <div v-if="pokemon.sprites.back_default !== null">
-        <img :src="pokemon.sprites.back_default" :alt="pokemon.name" />
+        <img
+          :class="`pokemonCard_${index}`"
+          :src="pokemon.sprites.back_default"
+          :alt="pokemon.name"
+        />
       </div>
 
       <div v-else>
-        <img :src="pokemon.sprites.front_default" :alt="pokemon.name" />
+        <img
+          :class="`pokemonCard_${index}`"
+          :src="pokemon.sprites.front_default"
+          :alt="pokemon.name"
+        />
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.pokemonCard_0 {
+  @apply w-14 -translate-y-2;
+}
+
+.pokemonCard_1 {
+  @apply w-14  translate-y-2;
+}
+
+.pokemonCard_2 {
+  @apply w-14  translate-y-4;
+}
+</style>

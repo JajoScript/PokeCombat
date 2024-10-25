@@ -15,11 +15,11 @@ const store = useTeamStore()
 
     <!-- Boton de acción -->
     <div class="flex justify-end items-center gap-x-4">
-      <h3>Turno: 0</h3>
+      <h3 class="text-sm">Turno: 0</h3>
 
       <button
         type="button"
-        className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
+        className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 focus:outline-none"
       >
         Siguiente turno
       </button>
