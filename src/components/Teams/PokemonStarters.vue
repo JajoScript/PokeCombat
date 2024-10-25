@@ -36,7 +36,7 @@ async function onRandomize() {
       loading="lazy"
     />
     <h2
-      :class="`text-slate-800 absolute top-0 bg-white px-2 py-1 rounded-md text-sm title_team_${teamNum}`"
+      :class="`text-slate-800 absolute -top-4 bg-white px-2 py-1 rounded-md text-sm title_team_${teamNum}`"
     >
       Equipo {{ teamNum }}
     </h2>
@@ -44,10 +44,7 @@ async function onRandomize() {
     <!-- Pokeballs -->
     <div class="flex flex-row justify-evenly w-full items-end mt-16">
       <div v-for="(pokemon, index) in team" :key="index">
-        <PokemonCard
-          :pokeball="index === 0 ? 'left' : index === 1 ? 'center' : 'right'"
-          :pokemon="pokemon"
-        />
+        <PokemonCard :pokeball="index" :pokemon="pokemon" />
       </div>
     </div>
 
