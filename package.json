@@ -14,7 +14,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fontsource-variable/handjet": "^5.1.0",
     "@fontsource/poppins": "^5.1.0",
+    "@fontsource/press-start-2p": "^5.1.0",
     "pinia": "^2.2.4",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"

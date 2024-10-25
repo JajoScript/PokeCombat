@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Press Start 2P', system-ui;
+  /* font-family: 'Handjet Variable', system-ui; */
 }
