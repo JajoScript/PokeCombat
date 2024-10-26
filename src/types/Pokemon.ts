@@ -1,5 +1,7 @@
 import type { PokemonAbility } from './PokemonAbility'
 import type { PokemonSprites } from './PokemonSprites'
+import type { PokemonStat } from './PokemonStats';
+import type { PokemonType } from './PokemonTypes';
 
 interface Pokemon {
   // El identificador de este recurso.
@@ -28,6 +30,10 @@ interface Pokemon {
 
   // A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at PokeAPI/sprites
   sprites: PokemonSprites;
+
+  stats: PokemonStat[];
+
+  types: PokemonType[];
 }
 
 
