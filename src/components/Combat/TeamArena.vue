@@ -12,7 +12,9 @@ const props = defineProps({
 })
 
 const store = useTeamStore()
-const team = ref<Pokemon[]>(props.teamNum === '1' ? store.team_1 : store.team_2)
+const team = ref<Pokemon[]>(
+  props.teamNum === '1' ? store.getTeam1 : store.getTeam2,
+)
 
 // *-- 1. Manejo del estado.
 // *-- 2. Ciclo de vida.

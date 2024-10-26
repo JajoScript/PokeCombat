@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import TeamDisplay from './TeamDisplay.vue'
 import { useTeamStore } from '@/stores/team'
 import { useTurnStore } from '@/stores/turn'
+import type { PokeStats } from '@/types'
 
 const teamStore = useTeamStore()
 const turnStore = useTurnStore()
@@ -12,26 +13,74 @@ const turnStore = useTurnStore()
 onMounted(() => {
   // El primer pokemon en atacar es el primero del equipo 1 (Superior).
   const pokemonId: number | undefined = teamStore.getTeam1[0]?.id
-
   if (pokemonId === undefined) return
 
   turnStore.setPokemonTurn(pokemonId)
+
+  /*
+    Inicio:
+    Turno: 1
+
+    Equipo: 1
+    Indice: 0
+    Pokemon-ID: 0
+  */
 })
 
 // *-- 3. Metodos.
 function onNextTurn() {
-  turnStore.nextTurn()
+  // Atacar al equipo contrario.
+  const atacanteId: number = turnStore.getPokemonTurn
+  console.info('Pokemon Atacante: ', atacanteId)
 
-  const index: number = turnStore.getTeamIndex
-
-  let pokeId: number
   if (turnStore.getTeamTurn === '1') {
-    pokeId = teamStore.getTeam1[index].id
+    const atacanteStats: PokeStats | undefined = teamStore.getTeamStats1.find(
+      poke => poke.pokemonId === atacanteId,
+    )
+
+    if (atacanteStats) {
+      console.info('STATS Pokemon Atacante: ', atacanteStats)
+
+      teamStore.getTeam2.forEach((poke, index) => {
+        console.info('Pokemon Defensor: ', poke.id)
+        teamStore.getTeamStats2[index].hp -= atacanteStats.attack
+      })
+    }
   } else {
-    pokeId = teamStore.getTeam2[index].id
+    const atacanteStats: PokeStats | undefined = teamStore.getTeamStats2.find(
+      poke => poke.pokemonId === atacanteId,
+    )
+
+    if (atacanteStats) {
+      console.info('STATS Pokemon Atacante: ', atacanteStats)
+
+      teamStore.getTeam1.forEach((poke, index) => {
+        console.info('Pokemon Defensor: ', poke.id)
+        teamStore.getTeamStats1[index].hp -= atacanteStats.attack
+      })
+    }
   }
 
-  turnStore.setPokemonTurn(pokeId)
+  // Siguiente turno.
+  const index: number = turnStore.getTeamIndex
+
+  if (turnStore.getTeamTurn == '1') {
+    turnStore.setTeamTurn('2')
+
+    turnStore.setPokemonTurn(teamStore.getTeam2[index].id)
+  } else {
+    // -- 1. Alternar el indice.
+    if (index < 2) {
+      turnStore.setTeamIndex(index + 1)
+    } else {
+      turnStore.setTeamIndex(0)
+    }
+
+    turnStore.setTeamTurn('1')
+    turnStore.setPokemonTurn(teamStore.getTeam1[index].id)
+  }
+
+  turnStore.setTurn(turnStore.getTurn + 1)
 }
 </script>
 

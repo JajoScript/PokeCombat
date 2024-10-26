@@ -16,31 +16,25 @@ export const useTurnStore = defineStore('turn', {
   }),
 
   actions: {
-    nextTurn() {
-      this.turn++
-
-      if (this.teamTurn === "1") {
-        this.teamTurn = "2"
-
-      } else {
-        this.teamTurn = "1"
-
-        // Alternar el indice del equipo.
-        if (this.teamIndex < 2) {
-          this.teamIndex++
-        } else if (this.teamIndex === 2) {
-          this.teamIndex = 0
-        }
-      }
+    setTurn(turn: number) {
+      console.info("[SET] Turn: ", turn)
+      this.turn = turn
     },
 
     setTeamTurn(team: string) {
+      console.info("[SET] TEAM Turn: ", team)
       this.teamTurn = team
     },
 
+    setTeamIndex(index: number) {
+      console.info("[SET] Team Index: ", index)
+      this.teamIndex = index
+    },
+
     setPokemonTurn(pokemonId: number) {
+      console.info("[SET] Pokemon Turn: ", pokemonId)
       this.pokemonTurn = pokemonId
-    }
+    },
   },
 
   getters: {
