@@ -10,14 +10,14 @@ defineProps<{
 
 <template>
   <div
-    :class="`stats_container stats_container_${teamNum} rounded-sm px-10 py-2 flex flex-col items-center `"
+    :class="`stats_container stats_container_${teamNum} rounded-md min-w-[250px] py-2 flex flex-col`"
   >
-    <p class="text-xs">{{ pokemon.name }}</p>
+    <p class="text-[0.5rem]">{{ pokemon.name }}</p>
 
     <div
       class="bg-slate-900/50 flex flex-row items-center gap-x-2 px-2 py-0.5 rounded-full w-[200px]"
     >
-      <p class="font-extrabold text-yellow-300">HP</p>
+      <p class="font-extrabold text-yellow-300 text-[0.5rem]">HP</p>
 
       <div class="w-full bg-slate-900 rounded-full h-1">
         <div
@@ -31,10 +31,16 @@ defineProps<{
 
 <style scoped>
 .stats_container_1 {
-  @apply bg-[url('@/assets/sprite_stats_team_1.webp')] bg-cover bg-center;
+  @apply bg-gray-500/40;
+  @apply border-b-2 border-slate-800/80;
+  @apply shadow-md;
+  @apply items-start px-2 ml-2;
 }
 
 .stats_container_2 {
-  @apply bg-[url('@/assets/sprite_stats_team_2.webp')] bg-cover bg-center;
+  @apply bg-gray-500/40;
+  @apply border-b-2 border-slate-800/60;
+  @apply shadow-md;
+  @apply items-end px-2 mr-2;
 }
 </style>

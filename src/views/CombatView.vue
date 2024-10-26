@@ -9,11 +9,8 @@ import router from '@/router/'
 const store = useTeamStore()
 
 onMounted(() => {
-  console.info('on MOUNTED combat - ')
-
-  if (store.team_1.length === 0 || store.team_1.length === 0) {
+  if (store.getTeam1.length === 0 || store.getTeam2.length === 0) {
     // Redirect to TeamsView
-    console.info('Redirect to TeamsView')
     router.push('/')
   }
 })
@@ -21,7 +18,7 @@ onMounted(() => {
 
 <template>
   <BaseLayout>
-    <main class="my-4 mx-4">
+    <main class="flex flex-col items-center justify-start mt-8 w-full h-svh">
       <section class="flex flex-row gap-x-4">
         <CombatBoard />
         <CombatLog />
